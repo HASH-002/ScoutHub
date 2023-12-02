@@ -15,7 +15,7 @@ import com.android.project.scouthub.model.RepoItem
 import com.android.project.scouthub.repository.RepoRepository
 import com.android.project.scouthub.util.Resource
 import com.android.project.scouthub.viewModel.RepoViewModel
-import com.android.project.scouthub.viewModel.viewModelFactory.ReposViewModelProviderFactory
+import com.android.project.scouthub.viewModel.ViewModelFactory
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -28,7 +28,7 @@ import javax.inject.Inject
 class RepoFragment : BaseFragment() {
 
     @Inject lateinit var repoRepository: RepoRepository
-    @Inject lateinit var viewModelFactory: ReposViewModelProviderFactory
+    @Inject lateinit var viewModelFactory: ViewModelFactory
     private lateinit var binding: FragmentRepoBinding
     private lateinit var viewModel: RepoViewModel
     private lateinit var repoAdapter: RepoAdapter

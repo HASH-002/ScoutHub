@@ -8,8 +8,9 @@ import com.android.project.scouthub.repository.UsersRepository
 import com.android.project.scouthub.util.Resource
 import kotlinx.coroutines.launch
 import retrofit2.Response
+import javax.inject.Inject
 
-class SearchViewModel(
+class SearchViewModel @Inject constructor(
     val userRepository: UsersRepository
 ) : ViewModel() {
 

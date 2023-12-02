@@ -8,8 +8,9 @@ import com.android.project.scouthub.repository.RepoRepository
 import com.android.project.scouthub.util.Resource
 import kotlinx.coroutines.launch
 import retrofit2.Response
+import javax.inject.Inject
 
-class RepoViewModel(
+class RepoViewModel @Inject constructor(
     val repoRepository: RepoRepository
 ) : ViewModel(){
 

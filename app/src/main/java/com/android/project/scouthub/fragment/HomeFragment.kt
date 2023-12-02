@@ -18,14 +18,14 @@ import com.android.project.scouthub.adapter.UsersAdapter
 import com.android.project.scouthub.databinding.FragmentHomeBinding
 import com.android.project.scouthub.repository.UsersRepository
 import com.android.project.scouthub.viewModel.UsersViewModel
-import com.android.project.scouthub.viewModel.viewModelFactory.UsersViewModelProviderFactory
+import com.android.project.scouthub.viewModel.ViewModelFactory
 import com.google.android.material.snackbar.Snackbar
 import javax.inject.Inject
 
 class HomeFragment : BaseFragment() {
 
     @Inject lateinit var usersRepository: UsersRepository
-    @Inject lateinit var viewModelFactory: UsersViewModelProviderFactory
+    @Inject lateinit var viewModelFactory: ViewModelFactory
     private lateinit var binding: FragmentHomeBinding
     private lateinit var usersAdapter: UsersAdapter
 

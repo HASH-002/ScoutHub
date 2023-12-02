@@ -13,12 +13,10 @@ import androidx.lifecycle.ViewModelProvider
 import com.android.project.scouthub.R
 import com.android.project.scouthub.activity.ScoutHubActivity
 import com.android.project.scouthub.databinding.FragmentSearchBinding
-import com.android.project.scouthub.db.UserDatabase
-import com.android.project.scouthub.repository.RepoRepository
 import com.android.project.scouthub.repository.UsersRepository
 import com.android.project.scouthub.util.Resource
 import com.android.project.scouthub.viewModel.SearchViewModel
-import com.android.project.scouthub.viewModel.viewModelFactory.SearchViewModelProviderFactory
+import com.android.project.scouthub.viewModel.ViewModelFactory
 import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
 import javax.inject.Inject
@@ -27,7 +25,7 @@ import javax.inject.Inject
 class SearchFragment : BaseFragment() {
 
     @Inject lateinit var usersRepository: UsersRepository
-    @Inject lateinit var viewModelFactory: SearchViewModelProviderFactory
+    @Inject lateinit var viewModelFactory: ViewModelFactory
     private lateinit var binding: FragmentSearchBinding
     private lateinit var paginationProgress: ProgressBar
     val TAG = "SearchFragment"
