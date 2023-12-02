@@ -3,15 +3,11 @@ package com.android.project.scouthub.fragment
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
-import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.project.scouthub.adapter.RepoAdapter
 import com.android.project.scouthub.databinding.FragmentRepoBinding
@@ -26,9 +22,13 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.util.Locale
+import javax.inject.Inject
 
 
-class RepoFragment : Fragment() {
+class RepoFragment : BaseFragment() {
+
+    @Inject lateinit var repoRepository: RepoRepository
+    @Inject lateinit var viewModelFactory: ReposViewModelProviderFactory
     private lateinit var binding: FragmentRepoBinding
     private lateinit var viewModel: RepoViewModel
     private lateinit var repoAdapter: RepoAdapter
@@ -39,6 +39,10 @@ class RepoFragment : Fragment() {
     private val searchJob: Job by lazy { Job() }
     private val searchScope: CoroutineScope by lazy { CoroutineScope(Dispatchers.Default + searchJob) }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        injector.inject(this)
+        super.onCreate(savedInstanceState)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -51,8 +55,7 @@ class RepoFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val viewModelProviderFactory = ReposViewModelProviderFactory(RepoRepository())
-        viewModel = ViewModelProvider(this,viewModelProviderFactory).get(RepoViewModel::class.java)
+        viewModel = ViewModelProvider(this,viewModelFactory).get(RepoViewModel::class.java)
 
         setupRecyclerView(view)
 

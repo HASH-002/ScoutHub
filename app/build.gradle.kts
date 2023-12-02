@@ -17,11 +17,6 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
-//        javaCompileOptions {
-//            annotationProcessorOptions {
-//                arguments += ["room.schemaLocation": "$projectDir/schemas".toString()]
-//            }
-//        }
     }
 
     buildTypes {
@@ -85,4 +80,8 @@ dependencies {
     // Glide
     implementation ("com.github.bumptech.glide:glide:4.11.0")
     ksp ("com.github.bumptech.glide:compiler:4.11.0")
+
+    // Dagger
+    implementation ("com.google.dagger:dagger:2.48")
+    ksp ("com.google.dagger:dagger-compiler:2.48")
 }

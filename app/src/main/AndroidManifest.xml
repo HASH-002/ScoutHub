@@ -6,6 +6,7 @@
 
 
     <application
+        android:name="com.android.project.scouthub.MyApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -19,7 +20,7 @@
         <uses-library android:name="org.apache.http.legacy" android:required="false"/>
 
         <activity
-            android:name=".ScoutHubActivity"
+            android:name=".activity.ScoutHubActivity"
             android:windowSoftInputMode="adjustPan"
 
             android:exported="true">

@@ -8,25 +8,34 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.ProgressBar
-import androidx.activity.OnBackPressedCallback
-import androidx.activity.addCallback
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.android.project.scouthub.R
-import com.android.project.scouthub.ScoutHubActivity
+import com.android.project.scouthub.activity.ScoutHubActivity
 import com.android.project.scouthub.databinding.FragmentSearchBinding
+import com.android.project.scouthub.db.UserDatabase
+import com.android.project.scouthub.repository.RepoRepository
+import com.android.project.scouthub.repository.UsersRepository
 import com.android.project.scouthub.util.Resource
-import com.android.project.scouthub.viewModel.UsersViewModel
+import com.android.project.scouthub.viewModel.SearchViewModel
+import com.android.project.scouthub.viewModel.viewModelFactory.SearchViewModelProviderFactory
 import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
+import javax.inject.Inject
 
 
-class SearchFragment : Fragment() {
+class SearchFragment : BaseFragment() {
 
+    @Inject lateinit var usersRepository: UsersRepository
+    @Inject lateinit var viewModelFactory: SearchViewModelProviderFactory
     private lateinit var binding: FragmentSearchBinding
-    private lateinit var viewModel: UsersViewModel
     private lateinit var paginationProgress: ProgressBar
     val TAG = "SearchFragment"
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        injector.inject(this)
+        super.onCreate(savedInstanceState)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,7 +47,8 @@ class SearchFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = (activity as ScoutHubActivity).viewModel
+
+        val viewModel = ViewModelProvider(this,viewModelFactory).get(SearchViewModel::class.java)
 
         paginationProgress = view.findViewById(R.id.searchSpinner)
         binding.apply {
